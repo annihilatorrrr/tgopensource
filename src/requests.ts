@@ -22,6 +22,7 @@ export const submitRequest = async (
       `<b>URL:</> ${url}\n` +
       `<b>License:</> ${license}`,
     {
+      parse_mode: "HTML",
       reply_markup: {
         inline_keyboard: [
           [
