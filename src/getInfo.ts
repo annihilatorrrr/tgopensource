@@ -13,12 +13,18 @@ export default async (match: RegExpMatchArray) => {
       await fetch(`https://api.github.com/repos/${user}/${repo}`)
     ).json();
 
-    return {
+    const toReturn = {
       name: json.full_name,
       description: json.description,
       url: json.svn_url,
       license: json.license?.name,
     };
+
+    if (!toReturn.description || !toReturn.license) {
+      return;
+    }
+
+    return toReturn;
   } catch (err) {
     return;
   }
