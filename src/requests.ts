@@ -18,11 +18,12 @@ export const submitRequest = async (
       escapeHtml(ctx.from?.first_name) +
       `</>\n` +
       `<b>Name</>: ${name}\n` +
-      `<b>Description:</> ${description}\n` +
+      `<b>Description:</> ${escapeHtml(description)}\n` +
       `<b>URL:</> ${url}\n` +
       `<b>License:</> ${license}`,
     {
       parse_mode: "HTML",
+      disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
           [
