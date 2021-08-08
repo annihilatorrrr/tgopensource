@@ -1,5 +1,4 @@
 import { Composer } from "grammy";
-import escapeHtml from "escape-html";
 
 const composer = new Composer();
 
@@ -11,15 +10,14 @@ composer.callbackQuery("decline", async (ctx) => {
   const from = text?.split("\n")[0].split("_")[1];
   const bot = text?.split("\n")[3].split(": ")[1];
 
-  if (!text || !from || !bot) {
+  if (!msg || !text || !from || !bot) {
     return;
   }
 
-  await ctx.editMessageText(
-    `<strike>${text}</strike>` +
-      `\n\n<b>Declined by ${escapeHtml(ctx.from.first_name)}.</b>`,
-    { parse_mode: "HTML" }
-  );
+  await ctx.editMessageText(text, { entities: msg.entities });
+  await ctx.reply(`Declined by ${ctx.from.first_name}.`, {
+    reply_to_message_id: msg.message_id,
+  });
 
   try {
     await ctx.api.sendMessage(from, `${bot} was declined.`);
@@ -37,7 +35,7 @@ composer.callbackQuery("approve", async (ctx) => {
   }
 
   await ctx.editMessageText(text, { entities: msg.entities });
-  await ctx.reply(`Approved by ${escapeHtml(ctx.from.first_name)}.`, {
+  await ctx.reply(`Approved by ${ctx.from.first_name}.`, {
     reply_to_message_id: msg.message_id,
   });
 

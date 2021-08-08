@@ -1,5 +1,4 @@
 import { Context } from "grammy";
-import escapeHtml from "escape-html";
 import { request } from "./database";
 import env from "./env";
 
@@ -16,7 +15,7 @@ export const submitRequest = async (
     `#u_${ctx.from?.id}\n\n` +
       `From: ${ctx.from?.first_name} [${ctx.from?.id}\n` +
       `Name: ${name}\n` +
-      `Description: ${escapeHtml(description)}\n` +
+      `Description: ${description}\n` +
       `URL: ${url}\n` +
       `License: ${license}`,
     {
