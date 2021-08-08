@@ -34,7 +34,7 @@ composer.filter(
   },
   async (ctx) => {
     const text = ctx.message?.text;
-    const match = text?.match(/^((http|https):\/\/)?github.com\/(.+)\/(.+)$/);
+    const match = text?.match(/^((http|https):\/\/)?github.com\/(.+)\/(.+)$/i);
     let info;
 
     if (match) {
