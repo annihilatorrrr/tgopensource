@@ -17,12 +17,6 @@ composer.command("new", (ctx) => {
   });
 });
 
-composer.callbackQuery("new", async (ctx) => {
-  return ctx.reply(newMessage, {
-    reply_markup: { force_reply: true },
-  });
-});
-
 composer.filter(
   (ctx) => {
     const message = ctx.message?.reply_to_message;
