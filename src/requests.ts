@@ -14,7 +14,7 @@ export const submitRequest = async (
   await ctx.api.sendMessage(
     env.ADMINS_CHAT_ID,
     `#u_${ctx.from?.id}\n\n` +
-      `From: ${ctx.from?.first_name} [${ctx.from?.id}\n` +
+      `From: ${ctx.from?.first_name} [${ctx.from?.id}]\n` +
       `Name: ${name}\n` +
       `Description: ${description}\n` +
       `URL: ${url}\n` +

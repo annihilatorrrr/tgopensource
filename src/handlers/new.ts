@@ -30,9 +30,9 @@ composer.filter(
   },
   async (ctx) => {
     const text = ctx.message?.text;
-    const match = text
-      ?.split(/\s/)[0]
-      ?.match(/^((http|https):\/\/)?github.com\/(.+)\/(.+)$/i);
+    const slices = text?.split(/\s/);
+    const url = slices ? slices[0] : "";
+    const match = url.match(/^((http|https):\/\/)?github.com\/(.+)\/(.+)$/i);
     let info;
 
     if (match) {
@@ -47,7 +47,7 @@ composer.filter(
           info.description,
           info.url,
           info.license,
-          ctx.message?.text?.split(/\s/).slice(1)
+          slices?.slice(1)
         );
       } catch (err) {
         await ctx.reply((err as Error).message);
