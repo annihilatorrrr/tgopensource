@@ -14,7 +14,10 @@ composer.callbackQuery("decline", async (ctx) => {
     return;
   }
 
-  await ctx.editMessageText(text, { entities: msg.entities });
+  await ctx.editMessageText(text, {
+    entities: msg.entities,
+    disable_web_page_preview: true,
+  });
   await ctx.reply(`Declined by ${ctx.from.first_name}.`, {
     reply_to_message_id: msg.message_id,
   });
@@ -34,7 +37,10 @@ composer.callbackQuery("approve", async (ctx) => {
     return;
   }
 
-  await ctx.editMessageText(text, { entities: msg.entities });
+  await ctx.editMessageText(text, {
+    entities: msg.entities,
+    disable_web_page_preview: true,
+  });
   await ctx.reply(`Approved by ${ctx.from.first_name}.`, {
     reply_to_message_id: msg.message_id,
   });
