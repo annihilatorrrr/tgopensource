@@ -7,7 +7,8 @@ export const submitRequest = async (
   name: string,
   description: string,
   url: string,
-  license: string
+  license: string,
+  otherUrls: string[] | undefined
 ) => {
   await request(name);
   await ctx.api.sendMessage(
@@ -17,7 +18,8 @@ export const submitRequest = async (
       `Name: ${name}\n` +
       `Description: ${description}\n` +
       `URL: ${url}\n` +
-      `License: ${license}`,
+      `License: ${license}\n` +
+      `Other URLs: ${otherUrls?.join(", ")}`,
     {
       disable_web_page_preview: true,
       reply_markup: {

@@ -6,7 +6,8 @@ const composer = new Composer();
 
 export default composer;
 
-const newMessage = "Send me your project's GitHub repository.";
+const newMessage =
+  "Send me your project's GitHub repository URL followed by its deploy, demo and video URLs if it has any.";
 const notValidMessage =
   "The provided URL isn't valid, or it isn't a GitHub repository URL. If you think you are correct, make sure that the repository uses a license and has a description.";
 
@@ -49,7 +50,8 @@ composer.filter(
           info.name,
           info.description,
           info.url,
-          info.license
+          info.license,
+          ctx.message?.text?.split(/\s/).slice(1)
         );
       } catch (err) {
         await ctx.reply((err as Error).message);
