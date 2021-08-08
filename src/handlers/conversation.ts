@@ -7,7 +7,7 @@ const composer = new Composer();
 export default composer;
 
 const infoMessage =
-  "ℹ️ This is a message from our team. Reply this message to send them a message.";
+  "This is a message from our team. Reply this message to send them a message.";
 
 const getFrom = (message: Message | undefined) =>
   Number(message?.text?.split("\n")[0].split("_")[1]);

@@ -5,8 +5,6 @@ const composer = new Composer();
 
 export default composer;
 
-const parse_mode = "HTML";
-
 composer.callbackQuery("decline", async (ctx) => {
   const msg = ctx.callbackQuery.message;
   const text = msg?.text;
@@ -19,12 +17,12 @@ composer.callbackQuery("decline", async (ctx) => {
 
   await ctx.editMessageText(
     `<strike>${text}</strike>` +
-      `\n\n<b>❌ Declined by ${escapeHtml(ctx.from.first_name)}.</b>`,
-    { parse_mode }
+      `\n\n<b>Declined by ${escapeHtml(ctx.from.first_name)}.</b>`,
+    { parse_mode: "HTML" }
   );
 
   try {
-    await ctx.api.sendMessage(from, `ℹ️ ${bot} was declined.`);
+    await ctx.api.sendMessage(from, `${bot} was declined.`);
   } catch (err) {}
 });
 
@@ -39,12 +37,11 @@ composer.callbackQuery("approve", async (ctx) => {
   }
 
   await ctx.editMessageText(text, { entities: msg.entities });
-  await ctx.reply(`<b>✅ Approved by ${escapeHtml(ctx.from.first_name)}.</b>`, {
-    parse_mode,
+  await ctx.reply(`Approved by ${escapeHtml(ctx.from.first_name)}.`, {
     reply_to_message_id: msg.message_id,
   });
 
   try {
-    await ctx.api.sendMessage(from, `ℹ️ ${bot} was approved.`);
+    await ctx.api.sendMessage(from, `${bot} was approved.`);
   } catch (err) {}
 });

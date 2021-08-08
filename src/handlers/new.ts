@@ -56,7 +56,7 @@ composer.filter(
         return;
       }
 
-      await ctx.reply("✅ Submitted.", {
+      await ctx.reply("Submitted.", {
         reply_markup: { force_reply: true },
       });
     } else {

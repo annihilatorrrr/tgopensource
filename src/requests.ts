@@ -11,24 +11,21 @@ export const submitRequest = async (
   license: string
 ) => {
   await request(name);
-  const message = await ctx.api.sendMessage(
+  await ctx.api.sendMessage(
     env.ADMINS_CHAT_ID,
     `#u_${ctx.from?.id}\n\n` +
-      `<b>From:</> <a href="tg://user?id=${ctx.from?.id}">` +
-      escapeHtml(ctx.from?.first_name) +
-      `</>\n` +
-      `<b>Name</>: ${name}\n` +
-      `<b>Description:</> ${escapeHtml(description)}\n` +
-      `<b>URL:</> ${url}\n` +
-      `<b>License:</> ${license}`,
+      `From: ${ctx.from?.first_name} [${ctx.from?.id}\n` +
+      `Name: ${name}\n` +
+      `Description: ${escapeHtml(description)}\n` +
+      `URL: ${url}\n` +
+      `License: ${license}`,
     {
-      parse_mode: "HTML",
       disable_web_page_preview: true,
       reply_markup: {
         inline_keyboard: [
           [
-            { text: "❌ Decline", callback_data: "decline" },
-            { text: "Approve ✅", callback_data: "approve" },
+            { text: "Decline", callback_data: "decline" },
+            { text: "Approve", callback_data: "approve" },
           ],
         ],
       },
