@@ -14,7 +14,7 @@ export default async (match: RegExpMatchArray) => {
     ).json();
 
     const toReturn = {
-      name: json.full_name,
+      name: json.name,
       description: json.description,
       url: json.svn_url,
       license: json.license?.name,
